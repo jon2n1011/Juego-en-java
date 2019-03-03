@@ -116,6 +116,7 @@ public class huntergame {
 	 * corresponents
 	 */
 	public static void empezarmapa() {
+		f.playMusic("hxh.wav");
 		String[] imatges = { "", "losa.png", "mountain.png", "remolino.png", "kura.png", "attackx.png", "chrollo.png",
 				"kura2.png", "kurapika.gif", "chain.png", "fuego.png", "chrollo2.png", "youwin.png", "vidasi.png",
 				"vidas1.png", "vidas2.png", "vidas3.png" };
