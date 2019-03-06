@@ -11,52 +11,54 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * Joc d'acció Ambientat en el anime més bonic,epic de tota la historia mundial
- * de l'animació japonesa. Hunter X Hunter Copyright.
+ * Joc d'acció Ambientat en la serie d'animació japonesa. Hunter X Hunter
+ * Copyright.
  * 
  * @author Jon Campaña Bonilla
- * @version Beta
+ * @version 1.0
+ * @since 1.0
  *
  */
 public class huntergame {
 	public static Scanner input = new Scanner(System.in);
 	public static int x = 1;
 	/**
-	 * @param x int Variable global que ens permet senyalitzar la fila del
-	 *          personatge principal.
+	 * Variable global que ens permet senyalitzar la fila del personatge principal.
 	 **/
 	public static int y = 1;
 	/**
-	 * @param y int Variable global que ens permet senyalitzar la columna del
-	 *          personatge principal.
+	 * Variable global que ens permet senyalitzar la columna del personatge
+	 * principal.
 	 **/
 	public static int ex = 18;
 	/**
-	 * @param ex int Variable global que ens permet senyalitzar la fila del
-	 *           personatge enemic.
+	 * Variable global que ens permet senyalitzar la fila del personatge enemic.
 	 **/
 	public static int ey = 28;
 	/**
-	 * @param ey int Variable global que ens permet senyalitzar la columna del
-	 *           personatge enemic.
+	 * Variable global que ens permet senyalitzar la columna del personatge enemic.
 	 **/
 	public static int vidas = 3;
 	/**
-	 * @param vidas int Variable global que indica la vida del nostre personatge i
-	 *              que ens serveix per diverses coses explicades posteriorment.
+	 * Variable global que indica la vida del nostre personatge i que ens serveix
+	 * per diverses coses explicades posteriorment.
 	 **/
 	public static int vidac = 5;
 	/**
-	 * @param vidasc int Variable global que indica la vida de l'enemic i que ens
-	 *               serveix per diverses coses explicades posteriorment.
+	 * Variable global que indica la vida de l'enemic i que ens serveix per diverses
+	 * coses explicades posteriorment.
 	 **/
 	public static boolean chrolloalife = true;
 	/**
-	 * @param chrolloalife boolean Booleà que permetrà seguir jugant mentre que
-	 *                     l'enemic sigui viu ( la variable vidac sigui major a 0).
+	 * Booleà que permetrà seguir jugant mentre que l'enemic sigui viu ( la variable
+	 * vidac sigui major a 0).
 	 **/
 	/**
-	 * Paràmetres de la interfície gràfica de Marc Albareda
+	 * Paràmetres a cridar de la interfície gràfica dissenyada per Marc Albareda
+	 * 
+	 * timer t Variable que utilitzarem per a cridar a board.java f Variable que
+	 * utilitzarem per a cridar a una nova finestra.
+	 * 
 	 */
 	public static Timer timer = new Timer();
 	public static Board t = new Board();
@@ -65,8 +67,8 @@ public class huntergame {
 
 	/**
 	 * 
-	 * @param int [][] mapa A continuació tenim el taulell de Joc representat en una
-	 *        matriu 30x20.
+	 * A continuació tenim el taulell de Joc representat en una matriu 30x20 on cada
+	 * numero representa una imatge.
 	 * 
 	 */
 	public static int[][] mapa = {
@@ -107,15 +109,24 @@ public class huntergame {
 		derrota();
 		victoria();
 
-		
 	}
 
 	/**
-	 * Aquest metode es el que fara la configuració inicial del mapa, carregara tots
-	 * els sprites de imatges i inciara un bucle de tot el joc amb els procediments
+	 * Aquest mètode és el que farà la configuració inicial del mapa, carregara tots
+	 * els sprites de imatges i iniciarà un bucle de tot el joc amb els procediments
 	 * corresponents
 	 */
+
 	public static void empezarmapa() {
+		/**
+		 * Paràmetres
+		 * 
+		 * @param imatges Les imatges que dibuixarem a la matriu mapa.
+		 * @param f       Crida a Windows.java
+		 * @param t       Crida a Board.java
+		 * @param timer   Crida al temporitzador.
+		 * 
+		 */
 		f.playMusic("hxh.wav");
 		String[] imatges = { "", "losa.png", "mountain.png", "remolino.png", "kura.png", "attackx.png", "chrollo.png",
 				"kura2.png", "kurapika.gif", "chain.png", "fuego.png", "chrollo2.png", "youwin.png", "vidasi.png",
@@ -137,12 +148,23 @@ public class huntergame {
 	}
 
 	/**
-	 * Aqui basicament mourem al personatge segons la tecla polsada, obrirem el menu
-	 * de pausa donant pas a una altre funcio i tambe donarem pas a atacar, que
-	 * estara linkada a un altre funcio
-	 */
+	* Aquí bàsicament mourem al personatge segons la tecla polsada, obrirem el menu
+	* de pausa donant pas a una altre funció i també donarem pas a atacar, que
+	* estarà linkada a un altre funció
+	*/
 	public static void movimientos() {
-
+		/**
+		 * Paràmetres
+		 * 
+		 * @param f     Crida a Windows.java
+		 * @param t     Crida a Board.java
+		 * @param y     Variable global per recórrer el moviment entre columnes
+		 * @param x     Variable global per recórrer el moviment entre files.
+		 * @param mapa  Matriu en la que treballem.
+		 * @param union Matriu en la que dibuixarem la matriu mapa intercalada amb un
+		 *              GIF.
+		 * 
+		 */
 		if (vidas > 0 && chrolloalife) {
 			if (f.getPressedKeys().contains('d')) {
 
@@ -255,12 +277,23 @@ public class huntergame {
 	}
 
 	/**
-	 * Procedimiento en el cual moveriamos al enemigo de forma aleatoria separados
-	 * en dos procedimientos alternos uno para pedir el numero y otro para procesar
-	 * el ataque
-	 */
+	* Procediment en el qual mourem a l'enemic de forma aleatòria separades
+	* en dos procediments alterns un per a demanar un número i l'altre per a processar l'atac
+	*/
 	public static void movimientonaranja() {
-		if (chrolloalife && vidas>0) {
+		/**
+		 * Paràmetres
+		 * 
+		 * @param chrolloalife Permet la entrada al procediment sempre que sigui el
+		 *                     Booleà sigui true
+		 * @param vidas        Permet la entrada al procediment sempre que les vides
+		 *                     siguin major a 0.
+		 * @param rnd          Variable que cridara a la funció random.
+		 * @param ex           Variable global per recórrer el moviment entre files.
+		 * @param ey           Variable global per recórrer el moviment entre columnes.
+		 * 
+		 */
+		if (chrolloalife && vidas > 0) {
 
 			int rnd = random();
 
@@ -305,15 +338,23 @@ public class huntergame {
 	}
 
 	/**
-	 * Metodo de ataque del procedimiento movimientos();
+	 * Procediment de atac que es crea a partir de l'opció X  de movimientos();
 	 */
 	public static void ataquecadena() {
-		mapa[x][y] = 5;
-
-		/*
-		 * A partir de aqui crearemos un bucle porque el ataque tiene 3 de rango. Hacer
-		 * un void
+		/**
+		 * Paràmetres
+		 * 
+		 * @param cont    Iniciem el contador que anirà acumulant en el bucle per tal de
+		 *                fer un atac de rang 3.
+		 * @param vidac   Vida de l'enemic, quan l'atac o el moviment de x i y l'agafi
+		 *                la reduirem.
+		 * @param salir   Booleà que permet sortir del bucle si ens topem amb un bloc
+		 *                que no es pot traspassar.
+		 * @param retorno Contador que utilitzarem per tal de esborrar el moviment de
+		 *                rang 3 que hem fet.
+		 * 
 		 */
+		mapa[x][y] = 5;
 
 		int cont = 1;
 		boolean salir = false;
@@ -353,9 +394,17 @@ public class huntergame {
 	}
 
 	/**
-	 * Metodo de ataque del procedimiento movimientonaranja();
+	 * Procediment de atac de l'enemic a movimientonaranja();
 	 */
 	public static void ataquemigo() {
+		/**
+		 * Paràmetres
+		 * 
+		 * @param vidas la nostra vida, si ens agafa l'atac de l'enemic disminueix.
+		 * @param ex    Variable global per recórrer el moviment entre files.
+		 * @param ey    Variable global per recórrer el moviment entre columnes.
+		 * 
+		 */
 		if (mapa[ex - 1][ey - 1] == 0 || mapa[ex - 1][ey - 1] == 4) {
 			if (mapa[ex - 1][ey - 1] == 4) {
 				vidas--;
@@ -369,7 +418,7 @@ public class huntergame {
 		if (mapa[ex + 1][ey - 1] == 0 || mapa[ex + 1][ey - 1] == 4) {
 			if (mapa[ex + 1][ey - 1] == 4) {
 				vidas--;
-				System.out.println(vidas);
+
 			} else if (mapa[ex + 1][ey - 1] == 0) {
 
 				mapa[ex + 1][ey - 1] = 10;
@@ -380,7 +429,6 @@ public class huntergame {
 		if (mapa[ex][ey - 1] == 0 || mapa[ex][ey - 1] == 4) {
 			if (mapa[ex][ey - 1] == 4) {
 				vidas--;
-				System.out.println(vidas);
 			} else if (mapa[ex][ey - 1] == 0) {
 				mapa[ex][ey - 1] = 10;
 			}
@@ -404,24 +452,28 @@ public class huntergame {
 	}
 
 	/**
-	 * En este procedimiento crearemos el menu pausa, que surge de haber eligdo la
-	 * opción M del procedimiento movimientos();
+	 * En aquest procediment crearem el menú pausa, que es crea a partir de haber agafat l'opció o lletra M en el procediment movimientos(); 
 	 */
 	public static void pausa() {
-
-		boolean salirpausa = false; /** Este boolean nos sirve para empezar el bucle y nos permitirar continuarlo
-									// mientras sea falso ( mientras no se pulse la tecle t como mas abajo lo
-									 explicamos)*/
+		/**
+		 * Paràmetres
+		 * 
+		 * @param salirpausa Booleà que ens permetra sortir del menú pausa quan polsem la tecla 'T'
+		 * @param lletres   Lletres que dibuixarem a la matriu.
+		 * @param colorlletres Color de les lletres.
+		 * @param pausa    Matriu en la cual dibuixarem les lletres.
+		 * 
+		 */
+		boolean salirpausa = false; 
+									 
 		String[] lletres = { "", "C", "O", "N", "T", "R", "O", "L", "E", "S", "-", "PAUSA", "W= Pujar cap a dalt",
 				"S=Baixar", "A= moures cap a la dreta", "D=Moures cap a l'esquerra", "X= Atacar",
 				"Y= Fer el super attack" };
 		t.setText(lletres);
-		int[] colorlletres = { 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF,
-				0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0x0000FF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF,
-				0xFFFFFF };
+		int[] colorlletres = { 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF,
+				0xFFFFFF, 0xFFFFFF, 0x0000FF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF };
 		t.setColortext(colorlletres);
-		int[][] pausa = {
-				{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+		int[][] pausa = { { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
 
 				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 				{ 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -442,13 +494,14 @@ public class huntergame {
 				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, };
-				t.setActimgbackground(true);
-				t.setImgbackground("yuzu.png");
+		t.setActimgbackground(true);
+		t.setImgbackground("yuzu.png");
 		while (salirpausa == false) {
 			t.draw(pausa, 't');
 			if (f.getPressedKeys().contains('t')) { /**
-			La finalitat del If es que quan pulsem la tecla T cambiara el bolea i ho posara a true.
-			*/
+													 * La finalitat del If es que quan pulsem la tecla T cambiara el
+													 * bolea i ho posara a true.
+													 */
 				salirpausa = true;
 			}
 
@@ -457,9 +510,16 @@ public class huntergame {
 	}
 
 	/**
-	 * Funcion que usaremos en nuestros procedimientos para dibujar el mapa.
+	 * Procediment que utilitzarem sempre que dibuixem el mapa per pantalla. 
 	 */
 	public static void dibujarmapa() {
+		/**
+		 * Paràmetres
+		 * 
+		 * @param union2 Unió de dues matrius, la matriu mapa i una matriu creada per l'sprite de les vides del personatge.
+		
+		 * 
+		 */
 		int[][][] union2 = { mapa,
 				{ { 0, 0, 0, 0, 0, 0, 0, 0, 13 + vidas }, { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 						{ 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -469,36 +529,52 @@ public class huntergame {
 	}
 
 	/**
-	 * Funcion que usaremos para pedir un numero random en nuestro procedimiento
-	 * movimientonaranja();
+	 * Procediment que utilitzarem per a demanar un número random en movimientonaranja(); 
 	 */
-	public static int random() { // Este procedimiento nos servira para todos los enemigos generandonos numeros
-									// random.
+	public static int random() { 
+		
+		/**
+		 * Paràmetres
+		 * 
+		 * @param random Crea un número random de l'1 al 5.
+		
+		 * @param return retorna el int random.
+		 */
 		int random = (int) (Math.random() * 5) + 1;
 		return random;
 	}
 
 	/**
-	 * Dibujaremos un mapa de victoria una vez hayamos ganado (chrolloalife seria
+	 * Dibuixarem un mapa de victoria una vegada haguem  ganado (chrolloalife seria
 	 * false)
 	 */
 	public static void victoria() {
-if (!chrolloalife) {
-		int[][] victoria = { { 0 }, };
-		t.setImgbackground("youwin.png");
-		t.draw(victoria);
-}
+		/**
+		 * Paràmetres
+		
+		 * @param victoria Matriu de victoria.
+		 */
+		if (!chrolloalife) {
+			int[][] victoria = { { 0 }, };
+			t.setImgbackground("youwin.png");
+			t.draw(victoria);
+		}
 	}
 
 	/**
-	 * Dibujaremos un mapa de derrota una vez hayamos perdido (vidas<=0)
+	 * Dibuixarem un mapa de derrota una vegada haguem perdut vides menor que 0 o 0.
 	 */
 	public static void derrota() {
-if (vidas==0) {
-		int[][] derrota = { { 0 }, };
-		t.setImgbackground("youlose.png");
-		t.draw(derrota);
-}
+		/**
+		 * Paràmetres
+		
+		 * @param derrota Matriu de derrota.
+		 */
+		if (vidas == 0) {
+			int[][] derrota = { { 0 }, };
+			t.setImgbackground("youlose.png");
+			t.draw(derrota);
+		}
 	}
 
 }
