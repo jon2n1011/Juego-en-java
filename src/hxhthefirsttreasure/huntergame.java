@@ -1,5 +1,6 @@
 package hxhthefirsttreasure;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.Scanner;
 import java.util.Set;
@@ -28,6 +29,7 @@ public class huntergame {
 	public static principal kurapika = new principal(1, 1, "Kurapika", 1, 3);
 	public static enemigo chrollo = new enemigo (18, 28, "Chrollo", 1, 5);
 	public static mapa mapa1= new mapa();
+
 	
 	
 	
@@ -35,18 +37,20 @@ public class huntergame {
 	 * 
 	 * A continuació tenim el taulell de Joc representat en una matriu 30x20 on cada
 	 * numero representa una imatge.
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 * 
 	 */
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 
 		empezarmapa();
 		bucle();
 
 	}
 
-	public static void bucle() {
+	public static void bucle() throws IOException, ClassNotFoundException {
 
 		movimientos();
 		mapa1.setMapa(chrollo.movimientonaranja(kurapika,mapa1.getMapa()));
@@ -88,7 +92,12 @@ public class huntergame {
 		
 			@Override
 			public void run() {
-				bucle();
+				try {
+					bucle();
+				} catch (IOException | ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 		}, 0, 200);
@@ -98,8 +107,10 @@ public class huntergame {
 	 * Aquí bàsicament mourem al personatge segons la tecla polsada, obrirem el menu
 	 * de pausa donant pas a una altre funció i també donarem pas a atacar, que
 	 * estarà linkada a un altre funció
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public static void movimientos() {
+	public static void movimientos() throws IOException, ClassNotFoundException {
 		/**
 		 * Paràmetres
 		 * 
@@ -145,8 +156,6 @@ public class huntergame {
 			} else if (f.getPressedKeys().contains('m')) {
 				pausa();
 			}
-			// Este if nos permite resetear los torbellinos una vez salimos de ellos para
-			// volver a cargar la imagen.
 			
 			
 		}
@@ -154,7 +163,7 @@ public class huntergame {
 	}
 
 	
-	public static void pausa() {
+	public static void pausa() throws IOException, ClassNotFoundException {
 		/**
 		 * Paràmetres
 		 * 
@@ -169,10 +178,10 @@ public class huntergame {
 
 		String[] lletres = { "", "C", "O", "N", "T", "R", "O", "L", "E", "S", "-", "PAUSA", "W= Pujar cap a dalt",
 				"S=Baixar", "A= moures cap a la dreta", "D=Moures cap a l'esquerra", "X= Atacar",
-				"Y= Fer el super attack" };
+				"Y= Fer el super attack", "G= guardar la partida, C= carregarla" };
 		t.setText(lletres);
 		int[] colorlletres = { 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF,
-				0xFFFFFF, 0xFFFFFF, 0x0000FF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF };
+				0xFFFFFF, 0xFFFFFF, 0x0000FF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF,0xFFFFFF };
 		t.setColortext(colorlletres);
 		int[][] pausa = { { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
 
@@ -189,7 +198,7 @@ public class huntergame {
 				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 				{ 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -205,7 +214,24 @@ public class huntergame {
 													 */
 				salirpausa = true;
 			}
-
+			if (f.getPressedKeys().contains('g')) { /**
+				
+				invocarmetodo de guardar la partida, de momento solo se puede guardar una vez des de el menu de pausa */
+				guardarpartida.guardar(mapa1, kurapika, chrollo);
+				salirpausa = true;
+			}
+// Parte 2 aun no hecha			
+if (f.getPressedKeys().contains('c')) { /**
+				
+				invocarmetodo cargar partida*/
+				cargarpartida.cargarpartida(mapa1,kurapika,chrollo);
+				 ArrayList<Object> objetos = cargarpartida.getobjetos(); 
+				 mapa1=(mapa) objetos.get(0);
+				 kurapika=(principal) objetos.get(1);
+				 chrollo=(enemigo) objetos.get(2);
+				 cargarpartida.borrar(); 
+				salirpausa = true;
+			}
 		}
 		t.setImgbackground("mapa.png"); // Reinciamos el fondo del mapa
 	}

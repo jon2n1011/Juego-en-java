@@ -1,6 +1,6 @@
 package hxhthefirsttreasure;
 
-public class mapa{
+public class mapa implements java.io.Serializable {
 
 
 
@@ -35,12 +35,7 @@ public class mapa{
 		this.mapa = mapa;
 	}
 
-public void cambiarcelda () {
-	
-	
-	
-	
-}
+
 	
 
 	

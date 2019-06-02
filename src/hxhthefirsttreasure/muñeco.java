@@ -1,6 +1,6 @@
 package hxhthefirsttreasure;
 
-public abstract class muñeco {
+public abstract class muñeco implements java.io.Serializable{
 
 	protected int x;
 	protected int y;
@@ -48,7 +48,6 @@ public abstract class muñeco {
 	}
 	
 	
-
 	
 	
 	

@@ -1,7 +1,7 @@
 package hxhthefirsttreasure;
 
 public class enemigo
-extends muñeco
+extends muñeco implements java.io.Serializable
 {
 	private boolean vivoe = true;
 
@@ -112,6 +112,9 @@ extends muñeco
 		
 		return array;
 	}
+
+	
+	
 	
 	
 	

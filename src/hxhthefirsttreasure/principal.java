@@ -1,6 +1,6 @@
 package hxhthefirsttreasure;
 
-public class principal extends muñeco {
+public class principal extends muñeco implements java.io.Serializable {
 
 	private boolean pausa = false;
 	
@@ -11,6 +11,8 @@ public class principal extends muñeco {
 	}
 
 	public int[][] moverpersonaje(char pos, int[][] array) {
+	
+
 		if (pos == 'd') {
 
 			if (array[x][y + 1] != 2 && array[x][y + 1] != 3) {
